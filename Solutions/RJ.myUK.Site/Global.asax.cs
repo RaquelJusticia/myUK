@@ -1,6 +1,8 @@
 ﻿using System.Web.Http;
 using System.Web.Mvc;
 using System.Web.Routing;
+using Ninject;
+using RJ.myUK.Site.IoC;
 
 namespace RJ.myUK.Site
 {
@@ -15,6 +17,8 @@ namespace RJ.myUK.Site
             WebApiConfig.Register(GlobalConfiguration.Configuration);
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
+
+            DependencyResolver.SetResolver(new NinjectDependencyResolver(new StandardKernel(new IoCBinding())));
         }
     }
 }
